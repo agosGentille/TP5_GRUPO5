@@ -1,21 +1,19 @@
 package TP5;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
 public class Principal extends JFrame{
 	
+
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	
 	public static void main(String[] args) {

@@ -6,6 +6,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.DefaultListModel;
 
 public class PanelAgregar extends JPanel{
 	
@@ -18,11 +19,19 @@ public class PanelAgregar extends JPanel{
 	private JButton btnAceptar;
 	private JLabel lblIdPelicula;
 	private JComboBox<Genero> cbGenero = new JComboBox<Genero>();
+	Pelicula pelicula = new Pelicula();
+	private DefaultListModel<Pelicula> dlModel;
+	
+	
+	public void SetDefaultlistModel(DefaultListModel<Pelicula> recibido)
+	{
+		this.dlModel = recibido;
+	}
 	
 	public PanelAgregar() {
 		setLayout(null);
 		
-		lblAgregarPelcula = new JLabel("Agregar Pel\u00EDcula");
+		lblAgregarPelcula = new JLabel("Agregar Pelicula");
 		lblAgregarPelcula.setBounds(184, 5, 123, 14);
 		add(lblAgregarPelcula);
 		
@@ -41,11 +50,6 @@ public class PanelAgregar extends JPanel{
 		lblGenero.setBounds(30, 130, 71, 14);
 		add(lblGenero);
 		
-		btnAceptar = new JButton("Aceptar");
-		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnAceptar.setBounds(30, 185, 150, 30);
-		add(btnAceptar);
-		
 		textField = new JTextField();
 		textField.setBounds(200, 90, 219, 20);
 		add(textField);
@@ -55,7 +59,7 @@ public class PanelAgregar extends JPanel{
 		lblIdPelicula.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblIdPelicula.setBounds(200, 50, 46, 14);
 		add(lblIdPelicula);
-		
+		lblIdPelicula.setText(Integer.toString(pelicula.getId()));
 		
 		cbGenero.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		cbGenero.setBounds(200, 130, 219, 20);
@@ -66,5 +70,12 @@ public class PanelAgregar extends JPanel{
 		cbGenero.addItem(new Genero(2, "Acción"));
 		cbGenero.addItem(new Genero(3, "Suspenso"));
 		cbGenero.addItem(new Genero(4, "Romántica"));
+		
+		btnAceptar = new JButton("Aceptar");
+		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnAceptar.setBounds(30, 185, 150, 30);
+		add(btnAceptar);
+		
+		
 	}
 }

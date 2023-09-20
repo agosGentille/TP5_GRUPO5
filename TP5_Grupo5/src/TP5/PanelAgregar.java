@@ -23,7 +23,7 @@ public class PanelAgregar extends JPanel{
 		setLayout(null);
 		
 		lblAgregarPelcula = new JLabel("Agregar Pel\u00EDcula");
-		lblAgregarPelcula.setBounds(186, 5, 77, 14);
+		lblAgregarPelcula.setBounds(184, 5, 123, 14);
 		add(lblAgregarPelcula);
 		
 		lblID = new JLabel("ID");
@@ -47,7 +47,7 @@ public class PanelAgregar extends JPanel{
 		add(btnAceptar);
 		
 		textField = new JTextField();
-		textField.setBounds(200, 90, 150, 20);
+		textField.setBounds(200, 90, 219, 20);
 		add(textField);
 		textField.setColumns(10);
 		
@@ -58,7 +58,13 @@ public class PanelAgregar extends JPanel{
 		
 		
 		cbGenero.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		cbGenero.setBounds(200, 130, 150, 20);
+		cbGenero.setBounds(200, 130, 219, 20);
 		add(cbGenero);
+		
+		cbGenero.addItem(new Genero(0, "Seleccionar Género"));
+		cbGenero.addItem(new Genero(1, "Terror"));
+		cbGenero.addItem(new Genero(2, "Acción"));
+		cbGenero.addItem(new Genero(3, "Suspenso"));
+		cbGenero.addItem(new Genero(4, "Romántica"));
 	}
 }

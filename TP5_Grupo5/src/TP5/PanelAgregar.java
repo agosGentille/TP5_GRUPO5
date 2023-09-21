@@ -65,13 +65,33 @@ public class PanelAgregar extends JPanel{
 		cbGenero.setBounds(200, 130, 219, 20);
 		add(cbGenero);
 		
-		cbGenero.addItem(new Genero(0, "Seleccionar GÈnero"));
+		cbGenero.addItem(new Genero(0, "Seleccionar G√©nero"));
 		cbGenero.addItem(new Genero(1, "Terror"));
-		cbGenero.addItem(new Genero(2, "AcciÛn"));
+		cbGenero.addItem(new Genero(2, "Acci√≥n"));
 		cbGenero.addItem(new Genero(3, "Suspenso"));
-		cbGenero.addItem(new Genero(4, "Rom·ntica"));
+		cbGenero.addItem(new Genero(4, "Rom√°ntica"));
 		
 		btnAceptar = new JButton("Aceptar");
+		btnAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(txtNombre.getText().isEmpty() != true && cbGenero.getSelectedIndex() != 0) {
+					
+					Pelicula pelicula = new Pelicula();
+					Genero genero = new Genero();
+					
+					genero.setGenero(cbGenero.getSelectedItem().toString());
+					genero.setId(cbGenero.getSelectedIndex());
+					
+					pelicula.setGenero(genero);
+					pelicula.setNombre(txtNombre.getText());
+					
+					//JOptionPane.showMessageDialog(null, pelicula.toString());
+					dlModel.addElement(pelicula);
+				}else {
+					JOptionPane.showMessageDialog(null, "Complete el nombre y seleccione un g√©nero para poder guardar la pel√≠cula");
+				}
+			}
+		});
 		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnAceptar.setBounds(30, 185, 150, 30);
 		add(btnAceptar);

@@ -11,7 +11,7 @@ import javax.swing.DefaultListModel;
 public class PanelAgregar extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
+	private JTextField txtNombre;
 	private JLabel lblAgregarPelcula;
 	private JLabel lblID;
 	private JLabel lblNombre;
@@ -50,10 +50,10 @@ public class PanelAgregar extends JPanel{
 		lblGenero.setBounds(30, 130, 71, 14);
 		add(lblGenero);
 		
-		textField = new JTextField();
-		textField.setBounds(200, 90, 219, 20);
-		add(textField);
-		textField.setColumns(10);
+		txtNombre = new JTextField();
+		txtNombre.setBounds(200, 90, 219, 20);
+		add(txtNombre);
+		txtNombre.setColumns(10);
 		
 		lblIdPelicula = new JLabel("");
 		lblIdPelicula.setFont(new Font("Tahoma", Font.PLAIN, 16));

@@ -59,7 +59,7 @@ public class PanelAgregar extends JPanel{
 		lblIdPelicula.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblIdPelicula.setBounds(200, 50, 46, 14);
 		add(lblIdPelicula);
-		lblIdPelicula.setText(Integer.toString(pelicula.getId()));
+		lblIdPelicula.setText(Integer.toString(pelicula.getId()+1));
 		
 		cbGenero.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		cbGenero.setBounds(200, 130, 219, 20);
@@ -84,6 +84,9 @@ public class PanelAgregar extends JPanel{
 					
 					pelicula.setGenero(genero);
 					pelicula.setNombre(txtNombre.getText());
+					
+					int proximoId = pelicula.getId()+1;
+					lblIdPelicula.setText(String.valueOf(proximoId));
 					
 					//JOptionPane.showMessageDialog(null, pelicula.toString());
 					dlModel.addElement(pelicula);

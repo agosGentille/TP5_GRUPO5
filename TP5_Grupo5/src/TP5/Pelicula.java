@@ -3,12 +3,12 @@ package TP5;
 public class Pelicula {
 	private final int id;
 	private String nombre;
-	private static int contador = 1;
+	private static int contador = 0;
 	private Genero genero;
 	
 	
 	public Pelicula(){
-		this.id = contador;
+		this.id = contador++;
 		this.nombre = "sin nombre";
 		this.genero = new Genero();
 	};

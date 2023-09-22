@@ -8,6 +8,7 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultListModel;
 import java.awt.event.*;
+import java.util.TreeSet;
 import javax.swing.JOptionPane;
 
 public class PanelAgregar extends JPanel{
@@ -23,7 +24,7 @@ public class PanelAgregar extends JPanel{
 	private JComboBox<Categoria> cbGenero = new JComboBox<Categoria>();
 	Pelicula pelicula = new Pelicula();
 	private DefaultListModel<Pelicula> dlModel;
-	
+	TreeSet<Pelicula> listaPeliculas = new TreeSet<Pelicula>();
 	
 	public void SetDefaultlistModel(DefaultListModel<Pelicula> recibido)
 	{
@@ -61,7 +62,7 @@ public class PanelAgregar extends JPanel{
 		lblIdPelicula.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblIdPelicula.setBounds(200, 50, 46, 14);
 		add(lblIdPelicula);
-		lblIdPelicula.setText(Integer.toString(pelicula.getId()+1));
+		lblIdPelicula.setText(Integer.toString(pelicula.getContador()));
 		
 		cbGenero.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		cbGenero.setBounds(200, 130, 219, 20);
@@ -78,20 +79,19 @@ public class PanelAgregar extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				if(txtNombre.getText().isEmpty() != true && cbGenero.getSelectedIndex() != 0) {
 					
-					Pelicula pelicula = new Pelicula();
-					Categoria categoria = new Categoria();
 					
-					categoria.setCategoria(cbGenero.getSelectedItem().toString());
-					categoria.setId(cbGenero.getSelectedIndex());
+					Categoria categoria = new Categoria(cbGenero.getSelectedIndex(),cbGenero.getSelectedItem().toString());
 					
-					pelicula.setCategoria(categoria);
-					pelicula.setNombre(txtNombre.getText());
+					pelicula = new Pelicula(txtNombre.getText(),categoria);
 					
-					int proximoId = pelicula.getId()+1;
-					lblIdPelicula.setText(String.valueOf(proximoId));
+					lblIdPelicula.setText(Integer.toString(pelicula.getContador()));
 					
-					//JOptionPane.showMessageDialog(null, pelicula.toString());
+					
+				
+					listaPeliculas.add(pelicula);
 					dlModel.addElement(pelicula);
+					cbGenero.setSelectedIndex(0);
+					txtNombre.setText("");
 				}else {
 					JOptionPane.showMessageDialog(null, "Complete el nombre y seleccione un género para poder guardar la película");
 				}

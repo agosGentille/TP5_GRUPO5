@@ -1,4 +1,5 @@
 package TP5;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -15,12 +16,14 @@ public class Principal extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private static DefaultListModel<Pelicula> listModel;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					Principal frame = new Principal();
+					listModel = new DefaultListModel<Pelicula>();
 					frame.setVisible(true);
 				}catch(Exception e){
 					e.printStackTrace();
@@ -50,6 +53,8 @@ public class Principal extends JFrame{
 				
 				contentPane.removeAll();
 				PanelAgregar panel = new PanelAgregar();
+				panel.SetDefaultlistModel(listModel);
+
 				contentPane.add(panel);
 				contentPane.repaint();
 				contentPane.revalidate();
@@ -61,6 +66,7 @@ public class Principal extends JFrame{
 				
 				contentPane.removeAll();
 				PanelListar panel = new PanelListar();
+				panel.setDefaultListModel(listModel);
 				contentPane.add(panel);
 				contentPane.repaint();
 				contentPane.revalidate();

@@ -8,10 +8,30 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultListModel;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.SortedSet;
 import java.util.TreeSet;
 import javax.swing.JOptionPane;
 
 public class PanelAgregar extends JPanel{
+
+	public static void OrdenarLista(DefaultListModel<Pelicula> dlModel){
+		
+		List<Pelicula> elementos = new ArrayList<>();
+        for (int i = 0; i < dlModel.size(); i++) {
+            elementos.add(dlModel.getElementAt(i));
+        }
+        
+        Collections.sort(elementos);
+        
+        dlModel.clear();
+        
+        for (Pelicula elemento : elementos) {
+            dlModel.addElement(elemento);
+        }
+	}
 	
 	private static final long serialVersionUID = 1L;
 	private JTextField txtNombre;
@@ -88,8 +108,10 @@ public class PanelAgregar extends JPanel{
 					
 					
 				
-					listaPeliculas.add(pelicula);
 					dlModel.addElement(pelicula);
+					
+					OrdenarLista(dlModel);
+					
 					cbGenero.setSelectedIndex(0);
 					txtNombre.setText("");
 				}else {
@@ -102,3 +124,5 @@ public class PanelAgregar extends JPanel{
 		add(btnAceptar);
 	}
 }
+
+

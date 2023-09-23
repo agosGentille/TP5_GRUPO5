@@ -68,18 +68,11 @@ public class Pelicula implements Comparable<Pelicula>{
 
 	@Override
 	public String toString() {
-		return nombre + " - "+categoria.toString() + " - ID: " + id;
+		return id + " - " + nombre + " - " + categoria.toString();
 	}
 
 	@Override
 	public int compareTo(Pelicula o) {
-		if(o.nombre.hashCode() == this.nombre.hashCode()) 
-			return 0;
-			if(o.nombre.hashCode() < this.nombre.hashCode()) 
-			{
-				return 1;
-			}
-			return -1;
-		
+		return this.nombre.compareToIgnoreCase(o.nombre);
 	}
 }

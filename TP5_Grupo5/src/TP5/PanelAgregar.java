@@ -11,28 +11,11 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.SortedSet;
 import java.util.TreeSet;
 import javax.swing.JOptionPane;
 
 public class PanelAgregar extends JPanel{
 
-	public static void OrdenarLista(DefaultListModel<Pelicula> dlModel){
-		
-		List<Pelicula> elementos = new ArrayList<>();
-        for (int i = 0; i < dlModel.size(); i++) {
-            elementos.add(dlModel.getElementAt(i));
-        }
-        
-        Collections.sort(elementos);
-        
-        dlModel.clear();
-        
-        for (Pelicula elemento : elementos) {
-            dlModel.addElement(elemento);
-        }
-	}
-	
 	private static final long serialVersionUID = 1L;
 	private JTextField txtNombre;
 	private JLabel lblAgregarPelcula;
@@ -51,6 +34,35 @@ public class PanelAgregar extends JPanel{
 		this.dlModel = recibido;
 	}
 	
+	public static void OrdenarLista(DefaultListModel<Pelicula> dlModel){
+		
+		List<Pelicula> elementos = new ArrayList<>();
+        for (int i = 0; i < dlModel.size(); i++) {
+            elementos.add(dlModel.getElementAt(i));
+        }
+        
+        Collections.sort(elementos);
+        
+        dlModel.clear();
+        
+        for (Pelicula elemento : elementos) {
+            dlModel.addElement(elemento);
+        }
+	}
+	
+	public void agregarItems_cbGenero() {
+		cbGenero.addItem(new Categoria(0, "Seleccionar Género"));
+		cbGenero.addItem(new Categoria(1, "Terror"));
+		cbGenero.addItem(new Categoria(2, "Acción"));
+		cbGenero.addItem(new Categoria(3, "Suspenso"));
+		cbGenero.addItem(new Categoria(4, "Romántica"));
+	}
+	
+	public void reestablecerCampos() {
+		cbGenero.setSelectedIndex(0);
+		txtNombre.setText("");
+	}
+		
 	public PanelAgregar() {
 		setLayout(null);
 		
@@ -88,32 +100,27 @@ public class PanelAgregar extends JPanel{
 		cbGenero.setBounds(200, 130, 219, 20);
 		add(cbGenero);
 		
-		cbGenero.addItem(new Categoria(0, "Seleccionar Género"));
-		cbGenero.addItem(new Categoria(1, "Terror"));
-		cbGenero.addItem(new Categoria(2, "Acción"));
-		cbGenero.addItem(new Categoria(3, "Suspenso"));
-		cbGenero.addItem(new Categoria(4, "Romántica"));
+		// Agrego los items al JComboBox, en este caso de Categoria/Género:
+		agregarItems_cbGenero();
 		
 		btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(txtNombre.getText().isEmpty() != true && cbGenero.getSelectedIndex() != 0) {
 					
-					
+					// Creo un objeto de Categoria, y luego se lo asigno a un nuevo objeto de Pelicula:
 					Categoria categoria = new Categoria(cbGenero.getSelectedIndex(),cbGenero.getSelectedItem().toString());
-					
 					pelicula = new Pelicula(txtNombre.getText(),categoria);
 					
+					// Establezco el contador:
 					lblIdPelicula.setText(Integer.toString(pelicula.getContador()));
 					
-					
-				
+					// Agrego el objeto pelicula al DefaultListModel:
 					dlModel.addElement(pelicula);
 					
 					OrdenarLista(dlModel);
 					
-					cbGenero.setSelectedIndex(0);
-					txtNombre.setText("");
+					reestablecerCampos();
 				}else {
 					JOptionPane.showMessageDialog(null, "Complete el nombre y seleccione un género para poder guardar la película");
 				}
